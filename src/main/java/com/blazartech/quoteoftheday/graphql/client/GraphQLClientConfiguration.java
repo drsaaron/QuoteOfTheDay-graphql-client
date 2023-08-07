@@ -4,6 +4,7 @@
  */
 package com.blazartech.quoteoftheday.graphql.client;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.graphql.client.GraphQlClient;
@@ -17,11 +18,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class GraphQLClientConfiguration {
     
-    private static final String GRAPHQL_URL = "http://localhost:30000/graphql";
+    @Value("${demo.graphql.url}")
+    private String graphqlURL;
     
     @Bean
     public GraphQlClient graphQLClient() {
-        WebClient webClient = WebClient.create(GRAPHQL_URL);
+        WebClient webClient = WebClient.create(graphqlURL);
         HttpGraphQlClient graphQlClient = HttpGraphQlClient.create(webClient);
         return graphQlClient;
     }
