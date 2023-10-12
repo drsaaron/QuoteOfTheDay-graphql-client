@@ -5,6 +5,7 @@
 package com.blazartech.quoteoftheday.graphql.client;
 
 import com.blazartech.quoteoftheday.graphql.client.data.QuoteData;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,8 +25,8 @@ public class GetQuoteCommandLineRunner implements CommandLineRunner {
     private GraphQlClient graphQLClient;
 
     private static final String GRAPHQL_QUERY = """
-                                                query {
-                                                  getQuote(number: 188) {
+                                                query($quoteNumber: Int!) {
+                                                  getQuote(number: $quoteNumber) {
                                                     number
                                                     usable
                                                     text
@@ -45,6 +46,7 @@ public class GetQuoteCommandLineRunner implements CommandLineRunner {
         log.info("getting quote {}", quoteNumber);
 
         Mono<QuoteData> quoteMono = graphQLClient.document(GRAPHQL_QUERY)
+                .variables(Map.of("quoteNumber", quoteNumber))
                 .retrieve("getQuote")
                 .toEntity(QuoteData.class);
 
