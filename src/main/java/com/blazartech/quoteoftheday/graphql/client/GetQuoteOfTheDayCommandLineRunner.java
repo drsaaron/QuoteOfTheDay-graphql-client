@@ -24,8 +24,8 @@ public class GetQuoteOfTheDayCommandLineRunner implements CommandLineRunner {
     private GraphQlClient graphQLClient;
     
     private static final String GRAPHQL_QUERY = """
-                                         query {
-                                           getQuoteOfTheDay(runDate: "2023-07-06") {
+                                         query($runDate: Date!) {
+                                           getQuoteOfTheDay(runDate: $runDate) {
                                              number
                                              runDate
                                              quote {
@@ -50,6 +50,7 @@ public class GetQuoteOfTheDayCommandLineRunner implements CommandLineRunner {
         log.info("getting quote of the day");
 
         Mono<QuoteOfTheDayData> quoteMono = graphQLClient.document(GRAPHQL_QUERY)
+                .variable("runDate", "2023-07-05")
                 .retrieve("getQuoteOfTheDay")
                 .toEntity(QuoteOfTheDayData.class);
 
