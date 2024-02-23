@@ -4,7 +4,7 @@
  */
 package com.blazartech.quoteoftheday.graphql.client.data;
 
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Data;
 
 /**
@@ -14,6 +14,6 @@ import lombok.Data;
 @Data
 public class QuoteOfTheDayData {
     
-    private Date runDate;
+    private LocalDate runDate;
     private QuoteData quote;
 }
