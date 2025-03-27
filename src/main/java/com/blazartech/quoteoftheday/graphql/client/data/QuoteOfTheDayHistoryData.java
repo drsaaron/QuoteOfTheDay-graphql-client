@@ -5,15 +5,36 @@
 package com.blazartech.quoteoftheday.graphql.client.data;
 
 import java.util.List;
-import lombok.Data;
 
 /**
  *
  * @author scott
  */
-@Data
 public class QuoteOfTheDayHistoryData {
     
     private int year;
     private List<QuoteOfTheDayData> quotesOfTheDay;
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public List<QuoteOfTheDayData> getQuotesOfTheDay() {
+        return quotesOfTheDay;
+    }
+
+    public void setQuotesOfTheDay(List<QuoteOfTheDayData> quotesOfTheDay) {
+        this.quotesOfTheDay = quotesOfTheDay;
+    }
+
+    @Override
+    public String toString() {
+        return "QuoteOfTheDayHistoryData{" + "year=" + year + ", quotesOfTheDay=" + quotesOfTheDay + '}';
+    }
+    
+    
 }

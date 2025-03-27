@@ -5,15 +5,36 @@
 package com.blazartech.quoteoftheday.graphql.client.data;
 
 import java.time.LocalDate;
-import lombok.Data;
 
 /**
  *
  * @author scott
  */
-@Data
 public class QuoteOfTheDayData {
     
     private LocalDate runDate;
     private QuoteData quote;
+
+    public LocalDate getRunDate() {
+        return runDate;
+    }
+
+    public void setRunDate(LocalDate runDate) {
+        this.runDate = runDate;
+    }
+
+    public QuoteData getQuote() {
+        return quote;
+    }
+
+    public void setQuote(QuoteData quote) {
+        this.quote = quote;
+    }
+
+    @Override
+    public String toString() {
+        return "QuoteOfTheDayData{" + "runDate=" + runDate + ", quote=" + quote + '}';
+    }
+    
+    
 }

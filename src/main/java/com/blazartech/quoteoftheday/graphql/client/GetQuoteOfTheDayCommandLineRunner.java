@@ -5,7 +5,8 @@
 package com.blazartech.quoteoftheday.graphql.client;
 
 import com.blazartech.quoteoftheday.graphql.client.data.QuoteOfTheDayData;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.graphql.client.GraphQlClient;
@@ -17,9 +18,10 @@ import reactor.core.publisher.Mono;
  * @author scott
  */
 @Component
-@Slf4j
 public class GetQuoteOfTheDayCommandLineRunner implements CommandLineRunner {
 
+    private static final Logger log = LoggerFactory.getLogger(GetQuoteOfTheDayCommandLineRunner.class);
+    
     @Autowired
     private GraphQlClient graphQLClient;
     
